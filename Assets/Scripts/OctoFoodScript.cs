@@ -32,7 +32,7 @@ public class OctoFoodScript : MonoBehaviour
 
     void Update()
     {
-        if (!isSpawning && indicator.activeSelf && player.GetComponent<Collider>().bounds.Intersects(GetComponent<Collider>().bounds)) {
+        if (!isSpawning) {
             // Increment the spawn timer
             spawnTimer += Time.deltaTime;
 
@@ -81,13 +81,13 @@ public class OctoFoodScript : MonoBehaviour
         Vector3 playerPosition = player.transform.position;
 
         // Calculate the position to spawn the new object at
-        Vector3 spawnPosition = playerPosition - new Vector3(0, player.transform.localScale.y / 4 + objectToSpawn.transform.localScale.y / 2, 0);
+        Vector3 spawnPosition = playerPosition - new Vector3(0, 50f, 0);
 
         // Activate the visual indicator
         indicator.SetActive(true);
 
         // Move the spawn indicator game object to the spawn position, just above the ground
-        indicator.transform.position = new Vector3(spawnPosition.x, 0.1f, spawnPosition.z);
+        indicator.transform.position = new Vector3(spawnPosition.x, .5f, spawnPosition.z);
 
         // Delay spawning the object for 1 second
         StartCoroutine(DelayedSpawn(spawnPosition));
@@ -98,7 +98,7 @@ public class OctoFoodScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // Spawn a new object at the spawn position
-        GameObject newObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.Euler(-90f, 0f, 0f));
+        GameObject newObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.Euler(0f, 0f, 0f));
 
         // Set the y position of the spawned object to be the same as the spawnPosition
         Vector3 newPosition = newObject.transform.position;
@@ -106,10 +106,10 @@ public class OctoFoodScript : MonoBehaviour
         newObject.transform.position = newPosition;
 
         // Animate the new object using LeanTween
-        LeanTween.moveLocalY(newObject, 0f, 1f).setEase(LeanTweenType.easeOutElastic);
-
+        LeanTween.moveLocalY(newObject, 0f, 1f).setEase(LeanTweenType.linear);
+        yield return new WaitForSeconds(2); // Pause for 2 seconds
         // Animate the disappearance using LeanTween
-        LeanTween.moveLocalY(newObject, -1000f, 2f).setEase(LeanTweenType.easeInExpo).setDelay(objectLifetime - 1f);
+        LeanTween.moveLocalY(newObject, -30F, 2f).setEase(LeanTweenType.linear).setDelay(objectLifetime - 1f);
 
         // Destroy the spawned object after a delay
         Destroy(newObject, objectLifetime);
