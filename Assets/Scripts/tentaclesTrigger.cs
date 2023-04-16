@@ -10,9 +10,10 @@ public class tentaclesTrigger : MonoBehaviour
     private void Start() {
         tentaclesPack.SetActive(false);
     }
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "tentaclesTrigger")
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "tentacleTrigger")
         {
+            Debug.Log("isCOlliding");
             tentaclesPack.SetActive(true);
             tentacle = GetComponent<Animator>();
         }

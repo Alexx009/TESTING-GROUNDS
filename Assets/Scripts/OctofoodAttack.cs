@@ -33,21 +33,7 @@ public class OctofoodAttack : MonoBehaviour
             tentacle4.SetBool(parameterName, Random.Range(0, 10) == 1);
             tentacle5.SetBool(parameterName, Random.Range(0, 10) == 1);
             tentacle6.SetBool(parameterName, Random.Range(0, 10) == 1);
-
-
-            // Call the SetParameter method for each tentacle Animator
-            SetParameter(tentacle1);
-            SetParameter(tentacle2);
-            SetParameter(tentacle3);
-            SetParameter(tentacle4);
-            SetParameter(tentacle5);
-            SetParameter(tentacle6);
         }
     }
 
-    void SetParameter(Animator animator)
-    {
-        // Set the value of the parameter to the random boolean value
-        animator.SetBool(parameterName, animator.GetBool(parameterName));
-    }
 }

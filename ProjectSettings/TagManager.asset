@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - octoFoodLand
+  - tentacleTrigger
   layers:
   - Default
   - TransparentFX

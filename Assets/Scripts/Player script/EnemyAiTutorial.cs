@@ -22,12 +22,6 @@ public class EnemyAiTutorial : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
-    private float bulletSpreadForward;
-    private float bulletSpreadUp;
-     private float bulletSpreadRight;
-          private float bulletSpreadLeft;
-     
-
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -36,18 +30,10 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-      
     }
-  
 
     private void Update()
     {
-          bulletSpreadForward = Random.Range(20f, 32f );
-             bulletSpreadUp = Random.Range(-1f, 5f );
-                 bulletSpreadRight = Random.Range(1f, 4f );
-                  bulletSpreadLeft = Random.Range(-1f, 4f );
-                 
-    
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -56,7 +42,6 @@ public class EnemyAiTutorial : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
-
 
     private void Patroling()
     {
@@ -90,7 +75,6 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void AttackPlayer()
     {
-           
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
@@ -99,13 +83,9 @@ public class EnemyAiTutorial : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * bulletSpreadForward, ForceMode.Impulse);
-            rb.AddForce(transform.up * bulletSpreadUp, ForceMode.Impulse);
-            rb.AddForce(transform.right * bulletSpreadRight, ForceMode.Impulse);
-             rb.AddForce(0f,0f,1f * bulletSpreadLeft, ForceMode.Impulse);
-        
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             ///End of attack code
 
             alreadyAttacked = true;
