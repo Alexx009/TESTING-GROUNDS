@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 3946464505996964759, guid: 796389c0574a9dd4da9da9c15e023944,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 796389c0574a9dd4da9da9c15e023944, type: 3}
@@ -2593,7 +2593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &497392117
 Transform:
   m_ObjectHideFlags: 0
@@ -3255,7 +3255,7 @@ GameObject:
   - component: {fileID: 651319143}
   m_Layer: 3
   m_Name: stagePlatform
-  m_TagString: Ground
+  m_TagString: octoFoodLand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11095,17 +11095,17 @@ PrefabInstance:
     - target: {fileID: 813949264536041666, guid: a5355474c8b6adb4fa57b153e26ab144,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -81.5
+      value: -76
       objectReference: {fileID: 0}
     - target: {fileID: 813949264536041666, guid: a5355474c8b6adb4fa57b153e26ab144,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.4
+      value: 31.8
       objectReference: {fileID: 0}
     - target: {fileID: 813949264536041666, guid: a5355474c8b6adb4fa57b153e26ab144,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 139.3
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 813949264536041666, guid: a5355474c8b6adb4fa57b153e26ab144,
         type: 3}
@@ -11853,17 +11853,17 @@ PrefabInstance:
     - target: {fileID: 3321901096886711768, guid: fe0a97568c8239c43a73dd5928f48e5e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -102
+      value: -93.7
       objectReference: {fileID: 0}
     - target: {fileID: 3321901096886711768, guid: fe0a97568c8239c43a73dd5928f48e5e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.89
+      value: 28.31
       objectReference: {fileID: 0}
     - target: {fileID: 3321901096886711768, guid: fe0a97568c8239c43a73dd5928f48e5e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 140.3
+      value: 197
       objectReference: {fileID: 0}
     - target: {fileID: 3321901096886711768, guid: fe0a97568c8239c43a73dd5928f48e5e,
         type: 3}
@@ -16529,6 +16529,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2097958002}
     - target: {fileID: 1378003135, guid: cbcba2a82614ab546bcaada2435a59a7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378003135, guid: cbcba2a82614ab546bcaada2435a59a7, type: 3}
       propertyPath: bossHealth
       value: 
       objectReference: {fileID: 1586112046}
@@ -16618,7 +16622,7 @@ PrefabInstance:
     - target: {fileID: 1322399779175138297, guid: cbcba2a82614ab546bcaada2435a59a7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1322399779263988263, guid: cbcba2a82614ab546bcaada2435a59a7,
         type: 3}

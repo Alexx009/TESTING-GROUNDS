@@ -29,13 +29,11 @@ private EnemyGameManager enemyGameManagerScript;
 
 public TextMeshProUGUI questComplete;
 public TextMeshProUGUI changeDialogue;
-private Animator gateAnimator;
 
 
 [SerializeField]private GameObject questText;
 
 void Start(){
-    gateAnimator = GameObject.Find("Gate").GetComponent<Animator>();
     octoFoodScript = GameObject.FindGameObjectWithTag("Player").GetComponent<OctoFoodScript>();
      enemyGameManagerScript = GetComponent<EnemyGameManager>();
      questComplete = GameObject.Find("QuestTextUI").GetComponent<TextMeshProUGUI>();
@@ -47,7 +45,7 @@ void Start(){
     void Update()
     {
          if(enemyCurrentHealth <= 0){
-            gateAnimator.Play("Door_AnimOpen");
+        
             changeDialogue.text = "Donny: Thank you so much! Here's $999999999";
             questComplete.text = "Quest: Kill the Kraken (Completed)";
             questText.SetActive(true);
