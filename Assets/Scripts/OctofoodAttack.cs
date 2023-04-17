@@ -10,19 +10,32 @@ public class OctofoodAttack : MonoBehaviour
     public Animator tentacle5;
     public Animator tentacle6;
 
+    private GameObject enemyBoss;
+    private EnemyGameManager enemyGameManagerScript;
+
     public string parameterName = "isAttack";
 
+    public bool isOnce = false;
+
+void Start(){
+  
+    enemyGameManagerScript = GameObject.Find("EnemyGameManager").GetComponent<EnemyGameManager>();
+}
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T)){
-            StartCoroutine(AnimateTentacles());
-        } 
+        if(enemyGameManagerScript.enemyCurrentHealth <= 70 && !isOnce ){
+  
+     StartCoroutine(AnimateTentacles());
+        }
+
     }
+
 
     IEnumerator AnimateTentacles()
     {
         while (true)
         {
+             isOnce = true;
             // Wait for 3 seconds
             yield return new WaitForSeconds(3f);
 
@@ -45,9 +58,13 @@ public class OctofoodAttack : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     void SetParameter(Animator animator)
     {
         // Set the value of the parameter to the random boolean value
         animator.SetBool(parameterName, animator.GetBool(parameterName));
     }
 }
+=======
+}
+>>>>>>> Stashed changes

@@ -3187,6 +3187,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!114 &626435092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626435090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413ff7572e0724246897e7491486cd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tentacle1: {fileID: 2497278332036219225}
+  tentacle2: {fileID: 2497278332267738019}
+  tentacle3: {fileID: 2497278330501984770}
+  tentacle4: {fileID: 2497278331688300284}
+  tentacle5: {fileID: 2497278330638630821}
+  tentacle6: {fileID: 2497278332059502769}
+  parameterName: isAttack
+  isOnce: 0
+>>>>>>> Stashed changes
 --- !u!1 &638274037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1322399778748969572, guid: cbcba2a82614ab546bcaada2435a59a7,
