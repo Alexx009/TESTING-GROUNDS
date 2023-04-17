@@ -11,18 +11,24 @@ public class OctofoodAttack : MonoBehaviour
     public Animator tentacle6;
 
     public string parameterName = "isAttack";
+    private bool isOnce = false;
+    private EnemyGameManager enemyGameManagerScript;
 
+void Start(){
+    enemyGameManagerScript = GameObject.Find("EnemyGameManager").GetComponent<EnemyGameManager>();
+}
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T)){
+        if(enemyGameManagerScript.enemyCurrentHealth <= 70 && !isOnce){
             StartCoroutine(AnimateTentacles());
-        } 
+        }
     }
 
     IEnumerator AnimateTentacles()
     {
         while (true)
         {
+            isOnce = true;  
             // Wait for 3 seconds
             yield return new WaitForSeconds(3f);
 
