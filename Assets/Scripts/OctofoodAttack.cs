@@ -11,79 +11,127 @@ public class OctofoodAttack : MonoBehaviour
     public Animator tentacle6;
 
     public string isAttack = "isAttack";
-    public string dizzy = "isDizzy";
+    public string dizzy = "dizzy";
     public string idle = "idle";
     private bool isOnce = false;
-    private bool isDizzy = false;
+    private bool isAnimating = false;
+    private float blendTime = 1f;
     private EnemyGameManager enemyGameManagerScript;
+
 
     void Start(){
         enemyGameManagerScript = GameObject.Find("EnemyGameManager").GetComponent<EnemyGameManager>();
-            tentacle1.SetFloat(idle, 0f);
-            tentacle2.SetFloat(idle, 0f);
-            tentacle3.SetFloat(idle, 0f);
-            tentacle4.SetFloat(idle, 0f);
-            tentacle5.SetFloat(idle, 0f);
-            tentacle6.SetFloat(idle, 0f);
-
     }
+
+
 
     void Update()
     {
-        // || enemyGameManagerScript.enemyCurrentHealth <= 60 || enemyGameManagerScript.enemyCurrentHealth <= 40 || enemyGameManagerScript.enemyCurrentHealth <= 20
-        // check if current health percentage is a multiple of 20% and greater than 0%
-        if (enemyGameManagerScript.enemyCurrentHealth <= 80  && !isOnce)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            isDizzy = true;
-            StartCoroutine(AnimateTentaclesDizzy());
+            if (!isAnimating)
+            {
+                StartCoroutine(AnimateTentaclesDizzy());
+                isAnimating = true;
+                Debug.Log("dizzy");
+            }
         }
-    }
-
-    IEnumerator AnimateTentacles()
-    {
-        while (true)
+        else
         {
-            isOnce = true;  
-            // Wait for 3 seconds
-            yield return new WaitForSeconds(3f);
-            Debug.Log("Attacking");
-            // Create a random boolean parameter for each tentacle Animator
-            tentacle1.SetBool(isAttack, Random.Range(0, 10) == 1);
-            tentacle2.SetBool(isAttack, Random.Range(0, 10) == 1);
-            tentacle3.SetBool(isAttack, Random.Range(0, 10) == 1);
-            tentacle4.SetBool(isAttack, Random.Range(0, 10) == 1);
-            tentacle5.SetBool(isAttack, Random.Range(0, 10) == 1);
-            tentacle6.SetBool(isAttack, Random.Range(0, 10) == 1);
+            isAnimating = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (!isAnimating)
+            {
+                StartCoroutine(AnimateTentacles());
+                isAnimating = true;
+                Debug.Log("attack");
+            }
+        }
+        else
+        {
+            isAnimating = false;
         }
     }
-    IEnumerator AnimateTentaclesDizzy()
+
+
+void AnimateTentaclesIdle()
+{
+    tentacle1.CrossFade(idle, blendTime);
+    tentacle2.CrossFade(idle, blendTime);
+    tentacle3.CrossFade(idle, blendTime);
+    tentacle4.CrossFade(idle, blendTime);
+    tentacle5.CrossFade(idle, blendTime);
+    tentacle6.CrossFade(idle, blendTime);
+    Debug.Log("not dizzy");
+    // isAnimating = false;
+}
+
+IEnumerator AnimateTentaclesDizzy()
+{
+    tentacle1.CrossFade(dizzy, blendTime);
+    tentacle2.CrossFade(dizzy, blendTime);
+    tentacle3.CrossFade(dizzy, blendTime);
+    tentacle4.CrossFade(dizzy, blendTime);
+    tentacle5.CrossFade(dizzy, blendTime);
+    tentacle6.CrossFade(dizzy, blendTime);
+    Debug.Log("dizzy");
+    yield return new WaitForSeconds(5f);
+    Invoke("AnimateTentaclesIdle", 5f);
+}
+
+IEnumerator AnimateTentacles()
+{
+    isOnce = true;
+ 
+    Debug.Log("Attacking");
+    // Create a random boolean parameter for each tentacle Animator
+    tentacle1.SetBool(isAttack, Random.Range(0, 3) == 1);
+    tentacle2.SetBool(isAttack, Random.Range(0, 3) == 1);
+    tentacle3.SetBool(isAttack, Random.Range(0, 3) == 1);
+    tentacle4.SetBool(isAttack, Random.Range(0, 3) == 1);
+    tentacle5.SetBool(isAttack, Random.Range(0, 3) == 1);
+    tentacle6.SetBool(isAttack, Random.Range(0, 3) == 1);
+
+    // Wait until the attack animation is done
+    while (true)
     {
-        while(isDizzy)
-        {       
-            isOnce = true; 
-            Debug.Log("dizzy");
-            
+        bool isAttacking = tentacle1.GetCurrentAnimatorStateInfo(0).IsName("attack");
+        isAttacking |= tentacle2.GetCurrentAnimatorStateInfo(0).IsName("attack");
+        isAttacking |= tentacle3.GetCurrentAnimatorStateInfo(0).IsName("attack");
+        isAttacking |= tentacle4.GetCurrentAnimatorStateInfo(0).IsName("attack");
+        isAttacking |= tentacle5.GetCurrentAnimatorStateInfo(0).IsName("attack");
+        isAttacking |= tentacle6.GetCurrentAnimatorStateInfo(0).IsName("attack");
 
-            tentacle1.SetBool(dizzy, true);
-            tentacle2.SetBool(dizzy, true);
-            tentacle3.SetBool(dizzy, true);
-            tentacle4.SetBool(dizzy, true);
-            tentacle5.SetBool(dizzy, true);
-            tentacle6.SetBool(dizzy, true);
-
-            yield return new WaitForSeconds(5f);
-
-            tentacle1.SetBool(dizzy, false);
-            tentacle2.SetBool(dizzy, false);
-            tentacle3.SetBool(dizzy, false);
-            tentacle4.SetBool(dizzy, false);
-            tentacle5.SetBool(dizzy, false);
-            tentacle6.SetBool(dizzy, false);
-            Debug.Log("not dizzy");
-
-            yield return new WaitForSeconds(1f);
-            isDizzy = false;
+        if (!isAttacking)
+        {
+            break;
         }
+
+        yield return null;
     }
+
+    Debug.Log("Finished attacking");
+    
+    // Wait for 1 second
+    yield return new WaitForSeconds(4f);
+
+    // Go to idle animation
+    tentacle1.SetBool(isAttack, false);
+    tentacle2.SetBool(isAttack, false);
+    tentacle3.SetBool(isAttack, false);
+    tentacle4.SetBool(isAttack, false);
+    tentacle5.SetBool(isAttack, false);
+    tentacle6.SetBool(isAttack, false);
+    
+    Debug.Log("Idle");
+
+    isAnimating = false;
+}
+
+
+
 
 }

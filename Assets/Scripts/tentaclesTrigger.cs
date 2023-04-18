@@ -15,7 +15,6 @@ public class tentaclesTrigger : MonoBehaviour
         {
             Debug.Log("isCOlliding");
             tentaclesPack.SetActive(true);
-            tentacle = GetComponent<Animator>();
         }
     }
 }

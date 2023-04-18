@@ -3193,7 +3193,7 @@ MonoBehaviour:
   tentacle5: {fileID: 2497278330638630821}
   tentacle6: {fileID: 2497278332059502769}
   isAttack: isAttack
-  dizzy: isDizzy
+  dizzy: dizzy
   idle: idle
 --- !u!1 &638274037 stripped
 GameObject:
