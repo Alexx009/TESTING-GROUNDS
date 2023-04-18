@@ -3194,6 +3194,7 @@ MonoBehaviour:
   tentacle6: {fileID: 2497278332059502769}
   isAttack: isAttack
   dizzy: isDizzy
+  idle: idle
 --- !u!1 &638274037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1322399778748969572, guid: cbcba2a82614ab546bcaada2435a59a7,

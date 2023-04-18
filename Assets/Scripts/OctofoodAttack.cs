@@ -12,28 +12,27 @@ public class OctofoodAttack : MonoBehaviour
 
     public string isAttack = "isAttack";
     public string dizzy = "isDizzy";
+    public string idle = "idle";
     private bool isOnce = false;
     private bool isDizzy = false;
-    private float bossHealth;
-    private float maxBossHealth;
     private EnemyGameManager enemyGameManagerScript;
-    private int currentHealthPercentage;
 
     void Start(){
         enemyGameManagerScript = GameObject.Find("EnemyGameManager").GetComponent<EnemyGameManager>();
-            tentacle1.SetFloat(dizzy, 0);
-            tentacle2.SetFloat(dizzy, 0);
-            tentacle3.SetFloat(dizzy, 0);
-            tentacle4.SetFloat(dizzy, 0);
-            tentacle5.SetFloat(dizzy, 0);
-            tentacle6.SetFloat(dizzy, 0);
+            tentacle1.SetFloat(idle, 0f);
+            tentacle2.SetFloat(idle, 0f);
+            tentacle3.SetFloat(idle, 0f);
+            tentacle4.SetFloat(idle, 0f);
+            tentacle5.SetFloat(idle, 0f);
+            tentacle6.SetFloat(idle, 0f);
 
     }
 
     void Update()
     {
+        // || enemyGameManagerScript.enemyCurrentHealth <= 60 || enemyGameManagerScript.enemyCurrentHealth <= 40 || enemyGameManagerScript.enemyCurrentHealth <= 20
         // check if current health percentage is a multiple of 20% and greater than 0%
-        if (enemyGameManagerScript.enemyCurrentHealth <= 80 && !isOnce)
+        if (enemyGameManagerScript.enemyCurrentHealth <= 80  && !isOnce)
         {
             isDizzy = true;
             StartCoroutine(AnimateTentaclesDizzy());
