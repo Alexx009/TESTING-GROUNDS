@@ -14,7 +14,7 @@ public class OctofoodAttack : MonoBehaviour
     public string dizzy = "dizzy";
     public string idle = "idle";
     private bool isOnce = false;
-    private bool isAnimating = false;
+    public bool isAnimating = false;
     private float blendTime = 1f;
     private EnemyGameManager enemyGameManagerScript;
 
@@ -27,20 +27,6 @@ public class OctofoodAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (!isAnimating)
-            {
-                StartCoroutine(AnimateTentaclesDizzy());
-                isAnimating = true;
-                Debug.Log("dizzy");
-            }
-        }
-        else
-        {
-            isAnimating = false;
-        }
-
         if (Input.GetKeyDown(KeyCode.Y))
         {
             if (!isAnimating)
@@ -56,7 +42,6 @@ public class OctofoodAttack : MonoBehaviour
         }
     }
 
-
 void AnimateTentaclesIdle()
 {
     tentacle1.CrossFade(idle, blendTime);
@@ -69,7 +54,7 @@ void AnimateTentaclesIdle()
     // isAnimating = false;
 }
 
-IEnumerator AnimateTentaclesDizzy()
+public IEnumerator AnimateTentaclesDizzy()
 {
     tentacle1.CrossFade(dizzy, blendTime);
     tentacle2.CrossFade(dizzy, blendTime);
@@ -82,7 +67,7 @@ IEnumerator AnimateTentaclesDizzy()
     Invoke("AnimateTentaclesIdle", 5f);
 }
 
-IEnumerator AnimateTentacles()
+public IEnumerator AnimateTentacles()
 {
     isOnce = true;
  

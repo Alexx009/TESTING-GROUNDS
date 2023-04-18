@@ -11,7 +11,7 @@ public class OctoFoodScript : MonoBehaviour
     public GameObject indicator; // The instantiated visual indicator object
     private bool isSpawning = false; // Whether an object is currently being spawned
     private float spawnTimer = 0f; // Timer for spawning objects
-
+    public OctofoodAttack octofoodAttack;
     private GateCloser gateCloserScript;
 
     [SerializeField] private GameObject octolandGO;
@@ -61,6 +61,22 @@ public class OctoFoodScript : MonoBehaviour
             // Activate the visual indicator
             indicator.SetActive(true);
             Debug.Log("spawn");
+        }
+
+        if (collision.gameObject.tag == "tentacleDizzy")
+        {
+            Destroy(collision.gameObject);
+            if (!octofoodAttack.isAnimating)
+            {
+                StartCoroutine(octofoodAttack.AnimateTentaclesDizzy());
+                octofoodAttack.isAnimating = true;
+                Debug.Log("dizzy");
+            }
+            Debug.Log("Collision with object of tag: tentacleDizzy");
+        }
+        else
+        {
+            octofoodAttack.isAnimating = false;
         }
     }
 
