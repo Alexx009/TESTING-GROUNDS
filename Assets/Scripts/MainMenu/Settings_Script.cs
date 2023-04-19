@@ -1,28 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class Settings_Script : MonoBehaviour
 {
-    public Dropdown dropdown; // Reference to the Dropdown component
-    public Text text; // Reference to the Text component of the Dropdown's Label
-    
-    
-    public Toggle fullscreenToggle; // Reference for Toggle
+    public TMP_Dropdown dropdown; // Reference to the Dropdown component
+    public TMP_Dropdown quality; // Reference to the Dropdown component
+    public TextMeshProUGUI text; // Reference to the TextMeshProUGUI component of the Dropdown's Label
 
+    public Toggle fullscreenToggle; // Reference for Toggle
 
     public AudioMixer audioMixer;   // Reference for audio
 
     public AudioMixer musicMixer;   // Reference for music
 
-
     private bool isPaused = false;
-    
+
     void Start()
     {
         getReso();
+
+        // Add listener to the dropdown
+        quality.onValueChanged.AddListener(delegate { setQuality(qualityIndex: quality.value); });
+
+        // Set the initial selected value of the dropdown to match the current quality level
+        quality.value = QualitySettings.GetQualityLevel();
 
         // Add listener to the toggle
         fullscreenToggle.onValueChanged.AddListener(delegate { OnFullScreen(); });
@@ -35,19 +40,17 @@ public class Settings_Script : MonoBehaviour
 
     }
 
-
-     void Update() {
+    void Update() {
 
         // ESC TO PAUSE/RESUME
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             togglePause();
         }
-        
-     }
 
+    }
 
-// GET AVAILABLE RESOLUTION ON THE DEVICE
+    // GET AVAILABLE RESOLUTION ON THE DEVICE
     void getReso()
     {
         dropdown.ClearOptions();
@@ -63,7 +66,7 @@ public class Settings_Script : MonoBehaviour
         foreach (Resolution resolution in resolutions)
         {
             string optionText = resolution.width + " x " + resolution.height;
-            Dropdown.OptionData option = new Dropdown.OptionData(optionText);
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData(optionText);
             dropdown.options.Add(option);
 
             // If the resolution matches the current screen resolution, set it as the default selected option
@@ -75,9 +78,7 @@ public class Settings_Script : MonoBehaviour
         }
     }
 
-
-
-// RESOLUTION CHANGE
+    // RESOLUTION CHANGE
     void OnResChange()
     {
         // Get the selected resolution option
@@ -92,8 +93,6 @@ public class Settings_Script : MonoBehaviour
         Screen.SetResolution(width, height, fullscreenToggle.isOn);
         Debug.Log("My resolution is " + width + " x " + height);
     }
-
-
 // FULLSCREEN
     void OnFullScreen()
     {
